@@ -1,8 +1,6 @@
 # DDI-Kraftwerk
 Atelier pour enrichir l'extraction des métadonnées DDI dans Kraftwerk
 
-## Stratégie de récupération des métadonnées
-
 > Métadonnées = DDI
 
 > 1 DDI = 1 mode de collecte = 1 fichier de données
@@ -200,9 +198,9 @@ Modalités d'une QCU :
 
 ### Validation de données 
 
-Actuellement : peu
+Actuellement : peu de validations formelles sur le contenu des variables dans Kraftwerk.
 
-Validations sur les valeurs des variables :
+Validations possibles sur les valeurs des variables :
 
 - string : longueur min / longueur max / pattern
 - numériques : valeur min, valeur max
