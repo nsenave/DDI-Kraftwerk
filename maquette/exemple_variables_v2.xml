@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesGroups>
+    <Group id="azertyui" name="RACINE">
+        <Variable>
+            <Name>ADRESSE</Name>
+            <Format>STRING</Format>
+        </Variable>
+        <Variable>
+            <Name>REVENUS</Name>
+            <Format>NUMBER</Format>
+        </Variable>
+    </Group>
+    <Group id="qsdfghjk" name="INDIVIDUS" parent="RACINE">
+        <Variable>
+            <Name>PRENOM</Name>
+            <Format>STRING</Format>
+        </Variable>
+        <Variable>
+            <Name>DATE_NAISSANCE</Name>
+            <Format>DATE</Format>
+        </Variable>
+        <Variable>
+            <Name>SEXE</Name>
+            <Format>STRING</Format>
+			<Values>
+				<Value label="Homme">1</Value>
+				<Value label="Femme">2</Value>
+			</Values>
+        <Variable>
+		<Variable>
+			<Name>RELATION_A</Name>
+			<QCM>RELATION<QCM>
+			<Format>BOOLEAN</Format>
+			<Label>Conjoint</Label>
+		</Variable>
+		<Variable>
+			<Name>RELATION_B</Name>
+			<QCM>RELATION<QCM>
+			<Format>BOOLEAN</Format>
+			<Label>Enfant</Label>
+		</Variable>
+		<Variable>
+			<Name>RELATION_C</Name>
+			<QCM>RELATION<QCM>
+			<Format>BOOLEAN</Format>
+			<Label>Parent</Label>
+		</Variable>
+		<Variable>
+			<Name>RELATION_D</Name>
+			<QCM>RELATION<QCM>
+			<Format>BOOLEAN</Format>
+			<Label>Autre</Label>
+		</Variable>
+        <Variable>
+            <Name>AVIS</Name>
+            <Format>STRING</Format>
+			<Values>
+				<Value label="Très bien">1</Value>
+				<Value label="Bien">2</Value>
+				<Value label="Mauvais">3</Value>
+				<Value label="Très mauvais">4</Value>
+			</Values>
+		<Variable>
+			<Name>GARNITURE_PIZZA_A</Name>
+			<QCM>GARNITURE_PIZZA</QCM>
+			<Format>BOOLEAN</Format>
+			<Label>Fromage</Label>
+		</Variable>
+		<Variable>
+			<Name>GARNITURE_PIZZA_B</Name>
+			<QCM>GARNITURE_PIZZA</QCM>
+			<Format>BOOLEAN</Format>
+			<Label>Champignons</Label>
+		</Variable>
+		<Variable>
+			<Name>GARNITURE_PIZZA_C</Name>
+			<QCM>GARNITURE_PIZZA</QCM>
+			<Format>BOOLEAN</Format>
+			<Label>Anchois</Label>
+		</Variable>
+		<Variable>
+			<Name>GARNITURE_PIZZA_D</Name>
+			<QCM>GARNITURE_PIZZA</QCM>
+			<Format>BOOLEAN</Format>
+			<Label>Saucisse</Label>
+		</Variable>
+		<Variable>
+			<Name>GARNITURE_PIZZA_E</Name>
+			<QCM>GARNITURE_PIZZA</QCM>
+			<Format>BOOLEAN</Format>
+			<Label>Coeurs d'artichaut</Label>
+		</Variable>
+    </Group>
+</VariablesGroups>
