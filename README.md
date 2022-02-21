@@ -52,14 +52,17 @@ Une QCU est aussi une variable unitaire.
 
 ### Groupes
 
-- Groupe de variables : `g:ResourcePackage > l:VariableScheme > l:VariableGroup`
-- Nom d'un groupe : `g:ResourcePackage > l:VariableScheme > l:VariableGroup > l:VariableGroupName > r:String`
+- Groupe de variables : 
+  - `g:ResourcePackage > l:VariableScheme > l:VariableGroup`
+- Nom d'un groupe : 
+  - `g:ResourcePackage > l:VariableScheme > l:VariableGroup > l:VariableGroupName > r:String`
 
 On associe une variable à son groupe via un identifiant :
 
-- ID d'une variable :
-  - dans un groupe : `g:ResourcePackage > l:VariableScheme > l:VariableGroup > r:VariableReference > r:ID`
-  - dans la définition de la variable : `g:ResourcePackage > l:VariableScheme > l:Variable > r:ID`
+- ID d'une variable dans un groupe : 
+  - `g:ResourcePackage > l:VariableScheme > l:VariableGroup > r:VariableReference > r:ID`
+- ID dans la définition de la variable :
+  - `g:ResourcePackage > l:VariableScheme > l:Variable > r:ID`
 
 Un groupe peut contenir des sous groupes. Le lien entre les groupes se fait via leur identifiant :
 
@@ -67,42 +70,54 @@ Un groupe peut contenir des sous groupes. Le lien entre les groupes se fait via 
 
 ### Variables
 
-- Liste des variables : `g:ResourcePackage > l:VariableScheme`
-- Nom d'une variable : `g:ResourcePackage > l:VariableScheme > l:Variable > l:VariableName > r:String`
-- Type d'une variable : `g:ResourcePackage > l:VariableScheme > l:Variable > l:VariableRepresentation > ...`
-  - `STRING` : `r:TextRepresentation` ou `r:CodeRepresentation` (cf. infos sur les QCU/listes de codes)
-  - `NUMBER` : `r:NumericRepresentation` ou `r:NumericRepresentationReference`
-  - `INTEGER` : `r:NumericRepresentation` ou `r:NumericRepresentationReference`
-  - Différence entre `INTEGER` et `NUMBER` : en DDI, un entier = un nombre avec 0 décimales ; si le nombre de décimales n'est pas précisé, c'est un entier.
-  - `BOOLEAN` : cas particulier de string/liste de codes définit par un standard Insee `r:CodeReference/r:ID='INSEE-COMMUN-CL-Booleen-1'`, valeurs = 1 pour "vrai", vide pour "faux".
-  - `DATE` : `r:DateTimeRepresentation` ou `r:DateTimeRepresentationReference`
+- Liste des variables : 
+  - `g:ResourcePackage > l:VariableScheme`
+- Nom d'une variable : 
+  - `g:ResourcePackage > l:VariableScheme > l:Variable > l:VariableName > r:String`
+- Type d'une variable : 
+  - `g:ResourcePackage > l:VariableScheme > l:Variable > l:VariableRepresentation > ...`
+
+| Type | DDI | Remarque |
+| --- | --- |
+| `STRING` | `r:TextRepresentation` ou `r:CodeRepresentation` | cf. infos sur les QCU/listes de codes |
+| `NUMBER` | `r:NumericRepresentation` ou `r:NumericRepresentationReference` | |
+| `INTEGER` | `r:NumericRepresentation` ou `r:NumericRepresentationReference` | En DDI, un entier = un nombre avec 0 décimales. Si le nombre de décimales n'est pas précisé, c'est un entier. |
+|`BOOLEAN` | cas particulier de string/liste de codes définit par un standard Insee `r:CodeReference/r:ID='INSEE-COMMUN-CL-Booleen-1'` | Valeurs = 1 pour "vrai", vide pour "faux". |
+|`DATE` | `r:DateTimeRepresentation` ou `r:DateTimeRepresentationReference` | |
 
 ### Informations supplémentaires pour les QCM
 
-- Définition d'une QCM : `g:ResourcePackage > d:QuestionScheme > d:QuestionGrid`
-- Nom de la question : `g:ResourcePackage > d:QuestionScheme > d:QuestionGrid > d:QuestionGridName > r:String`
-- Nom des modalités : `g:ResourcePackage > d:QuestionScheme > d:QuestionGrid > r:OutParameter > r:ParameterName > r:String`
+- Définition d'une QCM :
+  - `g:ResourcePackage > d:QuestionScheme > d:QuestionGrid`
+- Nom de la question : 
+  - `g:ResourcePackage > d:QuestionScheme > d:QuestionGrid > d:QuestionGridName > r:String`
+- Libellé des modalités : 
+  - `g:ResourcePackage > d:QuestionScheme > d:QuestionGrid > r:OutParameter > r:ParameterName > r:String`
 
 ### Informations supplémentaires pour les QCU
 
 Les QCU sont liées à des listes de codes. La valeur in fine est en `STRING`.
 
-Une variable QCU est associée à une liste de codes via un identifiant :
+- Définition d'une liste de codes : 
+  - `g:ResourcePackage > l:CodeListScheme`
+- Valeurs d'une liste de codes : 
+  - `g:ResourcePackage > l:CodeListScheme > l:CodeList > l:Code > r:Value`
+- Libellés d'une liste de code : (voir plus bas pour le lien valeur-libellé)
+  - `g:ResourcePackage > l:CategoryScheme > l:Category > r:Label > r:Content`
 
-- ID d'une liste de codes :
-  - dans une variable : `g:ResourcePackage > l:VariableScheme > l:VariableRepresentation > l:VariableRepresentation > r:CodeRepresentation > r:CodeListReference > r:ID`
-  - dans la définition de la liste de codes : `g:ResourcePackage > l:CodeListScheme > l:CodeList > r:ID`
+Une liste de codes est associée à une variable QCU via un identifiant :
 
-- Définition d'une liste de codes : `g:ResourcePackage > l:CodeListScheme`
-- Valeurs d'une liste de codes :`g:ResourcePackage > l:CodeListScheme > l:CodeList > l:Code > r:Value`
+- ID d'une liste de codes dans une variable : 
+  - `g:ResourcePackage > l:VariableScheme > l:VariableRepresentation > l:VariableRepresentation > r:CodeRepresentation > r:CodeListReference > r:ID`
+- ID d'une liste de codes dans la définition de la liste de codes : 
+  - `g:ResourcePackage > l:CodeListScheme > l:CodeList > r:ID`
 
 Une valeur d'une liste des codes est associée à un libellé via un identifiant :
 
-- ID d'une valeur d'une liste de codes :
-  - dans la liste de codes : `g:ResourcePackage > l:CodeListScheme > l:CodeList > l:Code > r:CategoryReference > r:ID`
-  - dans le libellé correspondant : `g:ResourcePackage > l:CategoryScheme > l:Category > r:ID`
-
-- Modalités d'une liste de codes : `g:ResourcePackage > l:CategoryScheme > l:Category > r:Label > r:Content`
+- ID d'une valeur dans une liste de codes :
+  - `g:ResourcePackage > l:CodeListScheme > l:CodeList > l:Code > r:CategoryReference > r:ID`
+- ID d'une valeur dans le libellé correspondant :
+  - `g:ResourcePackage > l:CategoryScheme > l:Category > r:ID`
 
 ## Implémentation de la récupération des métadonnées
 
@@ -124,8 +139,8 @@ Spécifications de l'output "`variables.xml`" (pseudo-code xml) :
         <Variable> *
             <Name>
             <Format>
-			<Values>
-			    <Value label=> *
+            <Values>
+                <Value label=> *
 
 * = la balise peut s'itérer plusieurs fois
 ```
