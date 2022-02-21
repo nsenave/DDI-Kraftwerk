@@ -211,6 +211,7 @@ Validations sur les valeurs des variables :
 Technos pour faire de la validation :
 
 | Format de données | techno |
+| --- | --- |
 | `LUNATIC_XML` | XSD |
 | `LUNATIC_JSON` | ? |
 | `XFORMS` | XSD |
