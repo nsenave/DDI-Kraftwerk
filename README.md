@@ -116,3 +116,21 @@ Variables QCU :
 - `Name` : nom de la variable (le même que dans la liste des variables unitaires).
 - `Value` : valeur des modalités de la QCU.
   - `label` : libellé de la modalité.
+
+
+## Validation de données 
+
+Actuellement : peu
+
+Validations sur les valeurs des variables :
+
+- string : longueur min / longueur max / pattern
+- numériques : valeur min, valeur max
+
+Techno pour la validation :
+
+| Format de données | techno |
+| `LUNATIC_XML` | XSD |
+| `LUNATIC_JSON` |  |
+| `XFORMS` | XSD |
+| `PAPER` |  |
