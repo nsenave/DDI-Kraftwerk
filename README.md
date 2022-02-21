@@ -78,7 +78,7 @@ Un groupe peut contenir des sous groupes. Le lien entre les groupes se fait via 
   - `g:ResourcePackage > l:VariableScheme > l:Variable > l:VariableRepresentation > ...`
 
 | Type | DDI | Remarque |
-| --- | --- |
+| --- | --- | --- |
 | `STRING` | `r:TextRepresentation` ou `r:CodeRepresentation` | cf. infos sur les QCU/listes de codes |
 | `NUMBER` | `r:NumericRepresentation` ou `r:NumericRepresentationReference` | |
 | `INTEGER` | `r:NumericRepresentation` ou `r:NumericRepresentationReference` | En DDI, un entier = un nombre avec 0 décimales. Si le nombre de décimales n'est pas précisé, c'est un entier. |
@@ -133,9 +133,9 @@ Spécifications de l'output "`variables.xml`" (pseudo-code xml) :
             <Format>
         <Variable> *
             <Name>
-			<QCM>
-			<Format>
-			<Label>
+            <QCM>
+            <Format>
+    	    <Label>
         <Variable> *
             <Name>
             <Format>
