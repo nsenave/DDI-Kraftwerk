@@ -12,9 +12,9 @@
     <xsl:variable name="root" select="."/>
     
     <xsl:template match="/">
-        <VariablesGroups>
+        <VariableGroups>
             <xsl:apply-templates select=".//l:VariableGroup"/>
-        </VariablesGroups>      
+        </VariableGroups>
     </xsl:template>
     
     <!--<xsl:template match="l:VariableScheme">
