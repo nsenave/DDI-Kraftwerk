@@ -1,4 +1,5 @@
 # DDI-Kraftwerk
+
 Atelier pour enrichir l'extraction des métadonnées DDI dans Kraftwerk
 
 > Métadonnées = DDI
@@ -50,14 +51,14 @@ Une QCU est aussi une variable unitaire.
 
 ### Groupes
 
-- Groupe de variables : 
+- Groupe de variables :
   - `g:ResourcePackage > l:VariableScheme > l:VariableGroup`
-- Nom d'un groupe : 
+- Nom d'un groupe :
   - `g:ResourcePackage > l:VariableScheme > l:VariableGroup > l:VariableGroupName > r:String`
 
 On associe une variable à son groupe via un identifiant :
 
-- ID d'une variable dans un groupe : 
+- ID d'une variable dans un groupe :
   - `g:ResourcePackage > l:VariableScheme > l:VariableGroup > r:VariableReference > r:ID`
 - ID dans la définition de la variable :
   - `g:ResourcePackage > l:VariableScheme > l:Variable > r:ID`
@@ -68,46 +69,63 @@ Un groupe peut contenir des sous groupes. Le lien entre les groupes se fait via 
 
 ### Variables
 
-- Liste des variables : 
+- Liste des variables :
   - `g:ResourcePackage > l:VariableScheme`
-- Nom d'une variable : 
+- Nom d'une variable :
   - `g:ResourcePackage > l:VariableScheme > l:Variable > l:VariableName > r:String`
-- Type d'une variable : 
+- Type d'une variable :
   - `g:ResourcePackage > l:VariableScheme > l:Variable > l:VariableRepresentation > ...`
 
 | Type | DDI | Remarque |
 | --- | --- | --- |
 | `STRING` | `r:TextRepresentation` ou `r:CodeRepresentation` | cf. infos sur les QCU/listes de codes |
-| `NUMBER` | `r:NumericRepresentation` ou `r:NumericRepresentationReference` | |
+| `NUMBER` | `r:NumericRepresentation` ou `r:NumericRepresentationReference` |  |
 | `INTEGER` | `r:NumericRepresentation` ou `r:NumericRepresentationReference` | En DDI, un entier = un nombre avec 0 décimales. Si le nombre de décimales n'est pas précisé, c'est un entier. |
-|`BOOLEAN` | cas particulier de string/liste de codes définit par un standard Insee `r:CodeReference/r:ID='INSEE-COMMUN-CL-Booleen-1'` | Valeurs = 1 pour "vrai", vide pour "faux". |
-|`DATE` | `r:DateTimeRepresentation` ou `r:DateTimeRepresentationReference` | |
+| `BOOLEAN` | cas particulier de string/liste de codes définit par un standard Insee `r:CodeReference/r:ID='INSEE-COMMUN-CL-Booleen-1'` | Valeurs = 1 pour "vrai", vide pour "faux". |
+| `DATE` | `r:DateTimeRepresentation` ou `r:DateTimeRepresentationReference` |  |
 
 ### Informations supplémentaires pour les QCM
 
 - Définition d'une QCM :
   - `g:ResourcePackage > d:QuestionScheme > d:QuestionGrid`
-- Nom de la question : 
+- Nom de la question :
   - `g:ResourcePackage > d:QuestionScheme > d:QuestionGrid > d:QuestionGridName > r:String`
-- Libellé des modalités : 
+- Noms des modalités :
   - `g:ResourcePackage > d:QuestionScheme > d:QuestionGrid > r:OutParameter > r:ParameterName > r:String`
+- Libellé d'une modalité modalités (\*) :
+  - `g:ResourcePackage > l:VariableScheme > l:Variable > r:Label > r:Content`
+
+On peut utiliser le nom de la variable pour faire le lien entre `l:Variable` et `r:ParameterName`.
+
+Sinon, on peut utiliser :
+
+- ID de la définition de la question dans la variable :
+  - `g:ResourcePackage > l:VariableScheme > l:Variable > r:QuestionReference > r:ID`
+  - en testant si `r:TypeOfObject` = `QuestionGrid`
+- ID de la question dans sa définition :
+  - `g:ResourcePackage > d:QuestionScheme > d:QuestionGrid > r:ID`
+
+(\*) _NB :_
+
+- Le libellé brut apparaît ici (on ne l'utilise pas) :
+  - `g:ResourcePackage > l:CategoryScheme > l:Category > r:Label > r:Content`
 
 ### Informations supplémentaires pour les QCU
 
 Les QCU sont liées à des listes de codes. La valeur in fine est en `STRING`.
 
-- Définition d'une liste de codes : 
+- Définition d'une liste de codes :
   - `g:ResourcePackage > l:CodeListScheme`
-- Valeurs d'une liste de codes : 
+- Valeurs d'une liste de codes :
   - `g:ResourcePackage > l:CodeListScheme > l:CodeList > l:Code > r:Value`
 - Libellés d'une liste de code : (voir plus bas pour le lien valeur-libellé)
   - `g:ResourcePackage > l:CategoryScheme > l:Category > r:Label > r:Content`
 
 Une liste de codes est associée à une variable QCU via un identifiant :
 
-- ID d'une liste de codes dans une variable : 
+- ID d'une liste de codes dans une variable :
   - `g:ResourcePackage > l:VariableScheme > l:VariableRepresentation > l:VariableRepresentation > r:CodeRepresentation > r:CodeListReference > r:ID`
-- ID d'une liste de codes dans la définition de la liste de codes : 
+- ID d'une liste de codes dans la définition de la liste de codes :
   - `g:ResourcePackage > l:CodeListScheme > l:CodeList > r:ID`
 
 Une valeur d'une liste des codes est associée à un libellé via un identifiant :
@@ -124,7 +142,7 @@ Une valeur d'une liste des codes est associée à un libellé via un identifiant
 Spécifications de l'output "`variables.xml`" (pseudo-code xml) :
 
 ```
-<VariablesGroups>
+<VariableGroups>
    <Group id= name= parent=> *
         <Variable> *
             <Name>
@@ -186,17 +204,16 @@ Modalités d'une QCU :
 - `Value` : valeur de la modalité.
   - `label` : libellé de la modalité.
 
-
 ## Apartés
 
 ### Autres formes de QCM / QCU
 
 - QCM "ordonnées", exemple "Classez les propositions par ordre de préférence"
-- QCM / QCU avec un champ libre, exemple "Autre, veuillez préciser"  
+- QCM / QCU avec un champ libre, exemple "Autre, veuillez préciser"
 
 -> Concepts pas encore implémentés dans Métallica.
 
-### Validation de données 
+### Validation de données
 
 Actuellement : peu de validations formelles sur le contenu des variables dans Kraftwerk.
 
@@ -209,8 +226,8 @@ Validations possibles sur les valeurs des variables :
 Technos pour faire de la validation :
 
 | Format de données | techno |
-| --- | --- |
-| `LUNATIC_XML` | XSD |
-| `LUNATIC_JSON` | ? |
-| `XFORMS` | XSD |
-| `PAPER` | ? |
+| ----------------- | ------ |
+| `LUNATIC_XML`     | XSD    |
+| `LUNATIC_JSON`    | ?      |
+| `XFORMS`          | XSD    |
+| `PAPER`           | ?      |
