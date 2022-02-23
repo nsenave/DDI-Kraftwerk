@@ -149,8 +149,8 @@ Spécifications de l'output "`variables.xml`" (pseudo-code xml) :
             <Format>
         <Variable> *
             <Name>
-            <MCQ>
             <Format>
+            <MCQ>
     	    <Label>
         <Variable> *
             <Name>
