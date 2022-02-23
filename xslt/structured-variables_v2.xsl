@@ -57,6 +57,7 @@
             <!-- Variables QCM -->
             <xsl:if test="$root//d:QuestionScheme/d:QuestionGrid[r:OutParameter/r:ParameterName/r:String=$variable-name]">
                 <QCM><xsl:value-of select="$root//d:QuestionScheme/d:QuestionGrid[r:OutParameter/r:ParameterName/r:String=$variable-name]/d:QuestionGridName/r:String"/></QCM>
+                <Label><xsl:value-of select="r:Label/r:Content"/></Label>
             </xsl:if>
             
             <!-- Variables QCU -->
