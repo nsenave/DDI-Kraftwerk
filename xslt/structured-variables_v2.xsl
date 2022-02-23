@@ -21,17 +21,16 @@
         <variables><xsl:apply-templates/></variables>
     </xsl:template>-->
     
-    <xsl:template match="l:Code" mode="infoQcu">
-        <xsl:variable name="value-id" select="r:Agency/r:ID"/>
+    <xsl:template match="l:Code" mode="ucqInfo">
+        <xsl:variable name="value-id" select="r:CategoryReference/r:ID"/>
         <xsl:variable name="value-label" select="$root//l:CategoryScheme/l:Category[r:ID = $value-id]/r:Label/r:Content[@xml:lang='fr-FR']"/>
         <Value label="{$value-label}"><xsl:value-of select="r:Value"/></Value>
     </xsl:template>
     
-    <xsl:template match="l:Variable" mode="infoVariables">
+    <xsl:template match="l:Variable" mode="variablesInfo">
         <Variable>
             <xsl:variable name="variable-name" select="current()/l:VariableName/r:String"/>
             
-            <!-- Variables "unitaires" -->
             <Name><xsl:value-of select="$variable-name"/></Name>
             <Format>
                 <xsl:choose>
@@ -54,17 +53,17 @@
                 </xsl:choose>
             </Format>
             
-            <!-- Variables QCM -->
+            <!-- MCQ variables -->
             <xsl:if test="$root//d:QuestionScheme/d:QuestionGrid[r:OutParameter/r:ParameterName/r:String=$variable-name]">
-                <QCM><xsl:value-of select="$root//d:QuestionScheme/d:QuestionGrid[r:OutParameter/r:ParameterName/r:String=$variable-name]/d:QuestionGridName/r:String"/></QCM>
+                <MCQ><xsl:value-of select="$root//d:QuestionScheme/d:QuestionGrid[r:OutParameter/r:ParameterName/r:String=$variable-name]/d:QuestionGridName/r:String"/></MCQ>
                 <Label><xsl:value-of select="r:Label/r:Content"/></Label>
             </xsl:if>
             
-            <!-- Variables QCU -->
+            <!-- UCQ variables -->
             <xsl:if test="l:VariableRepresentation/r:CodeRepresentation and not(l:VariableRepresentation/r:CodeRepresentation//r:CodeReference/r:ID='INSEE-COMMUN-CL-Booleen-1')">
                 <xsl:variable name="code-id" select="current()/l:VariableRepresentation/r:CodeRepresentation/r:CodeListReference/r:ID"/>
                 <Values>
-                    <xsl:apply-templates select="$root//l:CodeListScheme/l:CodeList[r:ID=$code-id]/l:Code" mode="infoQcu"/>
+                    <xsl:apply-templates select="$root//l:CodeListScheme/l:CodeList[r:ID=$code-id]/l:Code" mode="ucqInfo"/>
                 </Values>
             </xsl:if>
             
@@ -77,7 +76,7 @@
             <xsl:if test="$parent-names != ''">
                 <xsl:attribute name="parent" select="$parent-names"/>
             </xsl:if>
-            <xsl:apply-templates select="$root//l:Variable[r:ID=current()/r:VariableReference/r:ID]" mode="infoVariables"/>
+            <xsl:apply-templates select="$root//l:Variable[r:ID=current()/r:VariableReference/r:ID]" mode="variablesInfo"/>
         </Group>
     </xsl:template>
     

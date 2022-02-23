@@ -21,7 +21,7 @@
     </xsl:template>
     
     
-    <xsl:template match="l:Variable" mode="infoVariables">
+    <xsl:template match="l:Variable" mode="variablesInfo">
         <Variable>
             <Name><xsl:value-of select="l:VariableName/r:String"/></Name>
             <Format>
@@ -44,7 +44,7 @@
             <xsl:if test="$parent-names != ''">
                 <xsl:attribute name="parent" select="$parent-names"/>
             </xsl:if>
-            <xsl:apply-templates select="$root//l:Variable[r:ID=current()/r:VariableReference/r:ID]" mode="infoVariables"/>
+            <xsl:apply-templates select="$root//l:Variable[r:ID=current()/r:VariableReference/r:ID]" mode="variablesInfo"/>
         </Group>
     </xsl:template>
     

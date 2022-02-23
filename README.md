@@ -149,7 +149,7 @@ Spécifications de l'output "`variables.xml`" (pseudo-code xml) :
             <Format>
         <Variable> *
             <Name>
-            <QCM>
+            <MCQ>
             <Format>
     	    <Label>
         <Variable> *
@@ -186,7 +186,7 @@ On reconnaît une QCM par la présence de la balise `QCM`.
 
 - `Name` : nom de la variable, qui est une des modalités de la QCM.
 - `Format` = `BOOLEAN`
-- `QCM` : nom de la QCM.
+- `MCQ` : (_multiple choice question_) nom de la QCM.
 - `Label` : libellé de la modalité de la QCM.
 
 ### Variables QCU
